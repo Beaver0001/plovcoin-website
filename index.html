@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlovCoin ($PLOV) — The Universal Recipe On-Chain</title>
+<meta name="description" content="PlovCoin is a universal cultural memecoin on Solana. Fair launch. 45% airdrop to community. Mint=OFF. No presale, no VC.">
+<meta property="og:title" content="PlovCoin ($PLOV) — The Universal Recipe On-Chain">
+<meta property="og:description" content="The first universal cultural memecoin on Solana. Billions have tasted it. Now they can own it.">
+<meta property="og:image" content="https://plovcoin.com/og-image-home.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@PlovTeam">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Geist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* Brand Guide v1.2 palette */
+    --bg: #0a0806;
+    --bg-soft: #14110d;
+    --bg-warm: #1a1410;
+    --fire: #ff6b1a;
+    --fire-deep: #d44a00;
+    --fire-glow: #ff8a3d;
+    --gold: #f5c842;
+    --gold-deep: #c8951c;
+    --saffron: #ffb700;
+    --rice: #f5ecd5;
+    --rice-soft: #d8cba6;
+    --bronze: #8b6f47;
+    --carrot: #e85b1a;
+    --herb: #5a8a3a;
+    --alert: #b22222;
+    --noise-opacity: 0.04;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--rice);
+    font-family: 'Geist', -apple-system, sans-serif;
+    overflow-x: hidden;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: var(--noise-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(10,8,6,0.9), rgba(10,8,6,0.6));
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  nav.scrolled {
+    border-bottom-color: rgba(255,107,26,0.15);
+  }
+
+  .logo {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 28px;
+    color: var(--fire);
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 20px rgba(255,107,26,0.4);
+    transition: text-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .logo:hover { text-shadow: 0 0 30px rgba(255,107,26,0.8); }
+  .logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a {
+    color: var(--rice-soft);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--fire);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--fire); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    padding: 10px 24px;
+    background: var(--fire);
+    color: var(--bg);
+    border: none;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .nav-cta:hover {
+    background: var(--gold);
+    box-shadow: 0 0 32px rgba(255,107,26,0.5);
+    transform: translateY(-2px);
+  }
+
+  /* CONTAINERS */
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--fire);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--fire);
+  }
+
+  .section-title {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--rice);
+    margin-bottom: 24px;
+    max-width: 900px;
+  }
+
+  .section-title .gold {
+    background: linear-gradient(135deg, var(--gold), var(--saffron), var(--fire));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section-intro {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.4vw, 28px);
+    color: var(--rice-soft);
+    max-width: 720px;
+    line-height: 1.4;
+    margin-bottom: 96px;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 24px 80px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(255,107,26,0.25) 0%, rgba(255,107,26,0.08) 30%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+  }
+
+  .particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .spark {
+    width: 3px;
+    height: 3px;
+    background: var(--fire-glow);
+    box-shadow: 0 0 8px var(--fire);
+    animation: rise linear infinite;
+  }
+
+  .steam {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(245,236,213,0.08) 0%, transparent 70%);
+    animation: rise-steam linear infinite;
+  }
+
+  @keyframes rise {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100vh) translateX(var(--drift, 0px)); opacity: 0; }
+  }
+
+  @keyframes rise-steam {
+    0% { transform: translateY(0) scale(0.5); opacity: 0; }
+    20% { opacity: 0.8; }
+    100% { transform: translateY(-80vh) scale(2); opacity: 0; }
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--fire);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    padding: 8px 20px;
+    border: 1px solid rgba(255,107,26,0.3);
+    border-radius: 100px;
+    background: rgba(255,107,26,0.05);
+    backdrop-filter: blur(4px);
+    animation: fade-up 1s ease forwards;
+    opacity: 0;
+    animation-delay: 0.2s;
+    z-index: 2;
+    position: relative;
+  }
+
+  .hero-title {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: clamp(80px, 16vw, 240px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-align: center;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--saffron) 30%, var(--fire) 60%, var(--fire-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 24px;
+    filter: drop-shadow(0 4px 24px rgba(255,107,26,0.3));
+    animation: fade-up 1.2s ease forwards;
+    opacity: 0;
+    animation-delay: 0.4s;
+    z-index: 2;
+    position: relative;
+  }
+
+  .hero-subtitle {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(24px, 3.5vw, 42px);
+    color: var(--rice);
+    text-align: center;
+    max-width: 900px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    animation: fade-up 1s ease forwards;
+    opacity: 0;
+    animation-delay: 0.6s;
+    z-index: 2;
+    position: relative;
+  }
+
+  .hero-subtitle .accent { color: var(--gold); font-weight: 400; }
+
+  .hero-description {
+    font-size: 17px;
+    color: var(--rice-soft);
+    text-align: center;
+    max-width: 640px;
+    margin-bottom: 48px;
+    line-height: 1.6;
+    animation: fade-up 1s ease forwards;
+    opacity: 0;
+    animation-delay: 0.8s;
+    z-index: 2;
+    position: relative;
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 64px;
+    animation: fade-up 1s ease forwards;
+    opacity: 0;
+    animation-delay: 1s;
+    z-index: 2;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    padding: 16px 36px;
+    background: var(--fire);
+    color: var(--bg);
+    border: none;
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 32px rgba(255,107,26,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(255,107,26,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+
+  .btn-secondary {
+    padding: 16px 36px;
+    background: transparent;
+    color: var(--rice);
+    border: 1px solid rgba(245,236,213,0.2);
+    border-radius: 100px;
+    font-family: 'Geist', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(8px);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(245,200,66,0.05);
+  }
+
+  .countdown {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    z-index: 2;
+    position: relative;
+    animation: fade-up 1s ease forwards;
+    opacity: 0;
+    animation-delay: 1.2s;
+  }
+
+  .countdown-item {
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .countdown-value {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 48px;
+    color: var(--gold);
+    line-height: 1;
+    text-shadow: 0 0 24px rgba(245,200,66,0.4);
+  }
+
+  .countdown-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--rice-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 6px;
+  }
+
+  .countdown-divider {
+    color: var(--bronze);
+    font-size: 36px;
+    align-self: center;
+    opacity: 0.4;
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    padding: 32px 24px;
+    background: var(--bg-soft);
+    border-top: 1px solid rgba(255,107,26,0.15);
+    border-bottom: 1px solid rgba(255,107,26,0.15);
+  }
+
+  .trust-bar-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--rice-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .trust-item .icon {
+    font-size: 18px;
+  }
+
+  /* STORY SECTION */
+  .story {
+    position: relative;
+    padding: 160px 24px;
+    background: var(--bg-soft);
+    overflow: hidden;
+  }
+
+  .story::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--fire) 50%, transparent);
+    opacity: 0.4;
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--bronze) 10%, var(--bronze) 90%, transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-top: 80px;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    top: 53px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--fire);
+    box-shadow: 0 0 0 4px var(--bg-soft), 0 0 24px var(--fire);
+    z-index: 2;
+  }
+
+  .timeline-era {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--saffron);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .timeline-title {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 28px;
+    color: var(--rice);
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .timeline-text {
+    font-size: 14px;
+    color: var(--rice-soft);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* MANIFESTO */
+  .manifesto {
+    position: relative;
+    padding: 160px 24px;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  .manifesto::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(245,200,66,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 96px;
+  }
+
+  .manifesto-card {
+    position: relative;
+    padding: 48px 40px;
+    background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg-soft) 100%);
+    border: 1px solid rgba(139,111,71,0.2);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .manifesto-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--fire), transparent);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .manifesto-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,107,26,0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+  }
+
+  .manifesto-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255,107,26,0.4);
+    box-shadow: 0 24px 64px rgba(255,107,26,0.15);
+  }
+
+  .manifesto-card:hover::before,
+  .manifesto-card:hover::after {
+    opacity: 1;
+  }
+
+  .manifesto-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--bronze);
+    letter-spacing: 0.2em;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .manifesto-number::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--bronze);
+    opacity: 0.3;
+  }
+
+  .manifesto-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 28px;
+    color: var(--fire);
+    filter: drop-shadow(0 4px 12px rgba(255,107,26,0.3));
+  }
+
+  .manifesto-title {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 36px;
+    color: var(--rice);
+    margin-bottom: 20px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .manifesto-text {
+    font-size: 16px;
+    color: var(--rice-soft);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .manifesto-quote {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--gold);
+    line-height: 1.4;
+    padding-top: 24px;
+    border-top: 1px solid rgba(139,111,71,0.2);
+  }
+
+  /* TOKENOMICS */
+  .tokenomics {
+    padding: 160px 24px;
+    background: var(--bg-soft);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tokenomics::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,107,26,0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .tokenomics-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    margin-top: 72px;
+    align-items: start;
+  }
+
+  .token-recipe {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .token-row {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    background: var(--bg-warm);
+    border: 1px solid rgba(139,111,71,0.15);
+    border-radius: 16px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .token-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--pct);
+    background: linear-gradient(90deg, rgba(255,107,26,0.08), transparent);
+    pointer-events: none;
+  }
+
+  .token-row:hover {
+    border-color: var(--fire);
+    transform: translateX(4px);
+  }
+
+  .token-ing {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .token-name {
+    font-family: 'Geist', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--rice);
+  }
+
+  .token-desc {
+    font-size: 12px;
+    color: var(--rice-soft);
+    margin-top: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .token-pct {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 28px;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .token-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: sticky;
+    top: 100px;
+  }
+
+  .fact-card {
+    padding: 32px;
+    background: linear-gradient(180deg, var(--bg-warm), var(--bg-soft));
+    border: 1px solid rgba(139,111,71,0.2);
+    border-radius: 20px;
+  }
+
+  .fact-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+  }
+
+  .fact-value {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 40px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+    word-break: break-all;
+  }
+
+  .fact-sub {
+    font-size: 13px;
+    color: var(--rice-soft);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .fact-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .fact-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--bg);
+    border: 1px solid rgba(139,111,71,0.15);
+    border-radius: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--rice-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .fact-feature .check {
+    color: var(--herb);
+    font-weight: 700;
+  }
+
+  /* ROADMAP */
+  .roadmap {
+    padding: 160px 24px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phases {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 72px;
+    position: relative;
+  }
+
+  .phase {
+    display: grid;
+    grid-template-columns: 140px 180px 1fr;
+    gap: 40px;
+    padding: 40px 48px;
+    background: var(--bg-warm);
+    border: 1px solid rgba(139,111,71,0.2);
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--bronze);
+    transition: background 0.3s;
+  }
+
+  .phase.active::before { background: var(--fire); box-shadow: 0 0 24px var(--fire); }
+  .phase.done::before { background: var(--herb); }
+
+  .phase:hover {
+    border-color: rgba(255,107,26,0.3);
+    transform: translateX(4px);
+  }
+
+  .phase-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+  }
+
+  .phase-status.upcoming {
+    color: var(--rice-soft);
+    background: rgba(216,203,166,0.08);
+    border: 1px solid rgba(216,203,166,0.2);
+  }
+
+  .phase-status.active {
+    color: var(--fire);
+    background: rgba(255,107,26,0.1);
+    border: 1px solid rgba(255,107,26,0.3);
+  }
+
+  .phase-status.active::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--fire);
+    border-radius: 50%;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .phase-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .phase-title {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 32px;
+    color: var(--rice);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .phase-subtitle {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--saffron);
+  }
+
+  .phase-desc ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .phase-desc li {
+    font-size: 14px;
+    color: var(--rice-soft);
+    line-height: 1.5;
+    padding-left: 22px;
+    position: relative;
+  }
+
+  .phase-desc li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 1px;
+    background: var(--fire);
+  }
+
+  /* SECURITY */
+  .security {
+    padding: 160px 24px;
+    background: var(--bg-soft);
+  }
+
+  .security-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 72px;
+  }
+
+  .security-card {
+    padding: 40px 32px;
+    background: var(--bg-warm);
+    border: 1px solid rgba(139,111,71,0.2);
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+
+  .security-card:hover {
+    border-color: rgba(255,107,26,0.3);
+    transform: translateY(-4px);
+  }
+
+  .sec-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--fire);
+    margin-bottom: 24px;
+  }
+
+  .sec-title {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 24px;
+    color: var(--rice);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .sec-text {
+    font-size: 14px;
+    color: var(--rice-soft);
+    line-height: 1.6;
+  }
+
+  .audit-banner {
+    margin-top: 48px;
+    padding: 24px 32px;
+    background: linear-gradient(90deg, rgba(255,107,26,0.1), rgba(245,200,66,0.05));
+    border: 1px solid rgba(255,107,26,0.2);
+    border-radius: 16px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .audit-banner .audit-icon {
+    font-size: 24px;
+  }
+
+  .audit-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--rice);
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+  }
+
+  .audit-text a {
+    color: var(--fire);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--fire);
+  }
+
+  /* COMMUNITY */
+  .community {
+    padding: 160px 24px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .community::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(255,107,26,0.08), transparent 60%);
+    pointer-events: none;
+  }
+
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 72px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .social-card {
+    padding: 36px 24px;
+    background: var(--bg-warm);
+    border: 1px solid rgba(139,111,71,0.2);
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--rice);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .social-card:hover {
+    border-color: var(--fire);
+    transform: translateY(-4px);
+    background: var(--bg-soft);
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--fire);
+  }
+
+  .social-name {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .social-handle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--rice-soft);
+    letter-spacing: 0.08em;
+  }
+
+  /* CTA FINAL */
+  .cta-final {
+    padding: 120px 24px;
+    background: var(--bg-soft);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255,107,26,0.15);
+    border-bottom: 1px solid rgba(255,107,26,0.15);
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(255,107,26,0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-title {
+    font-family: 'Bagel Fat One', cursive;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    position: relative;
+    background: linear-gradient(180deg, var(--gold), var(--fire));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .cta-desc {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--rice-soft);
+    max-width: 600px;
+    margin: 0 auto 48px;
+    line-height: 1.4;
+    position: relative;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 80px 24px 40px;
+    background: var(--bg);
+    border-top: 1px solid rgba(139,111,71,0.15);
+  }
+
+  .footer-main {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+
+  .footer-brand .logo {
+    margin-bottom: 16px;
+  }
+
+  .footer-tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--rice-soft);
+    margin-bottom: 24px;
+    max-width: 320px;
+    line-height: 1.4;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 12px;
+  }
+
+  .footer-social {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--bg-warm);
+    border: 1px solid rgba(139,111,71,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--rice-soft);
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .footer-social:hover {
+    color: var(--fire);
+    border-color: var(--fire);
+    transform: translateY(-2px);
+  }
+
+  .footer-col h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fire);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-col a {
+    color: var(--rice-soft);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+
+  .footer-col a:hover {
+    color: var(--fire);
+  }
+
+  .footer-legal {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 32px;
+    border-top: 1px solid rgba(139,111,71,0.15);
+  }
+
+  .risk-disclosure {
+    font-size: 11px;
+    color: var(--rice-soft);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    opacity: 0.8;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  .risk-disclosure strong { color: var(--fire); }
+
+  .anti-phish {
+    font-size: 11px;
+    color: var(--rice-soft);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: var(--bg-warm);
+    border-left: 3px solid var(--fire);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .anti-phish strong { color: var(--fire); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--bronze);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  /* MOBILE */
+  @media (max-width: 1024px) {
+    .tokenomics-grid { grid-template-columns: 1fr; gap: 48px; }
+    .token-facts { position: static; }
+    .phase { grid-template-columns: 1fr; gap: 16px; }
+    .footer-main { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .timeline { grid-template-columns: 1fr; gap: 48px; }
+    .timeline::before { display: none; }
+    .timeline-item { padding-top: 0; }
+    .timeline-marker { display: none; }
+    .manifesto-grid { grid-template-columns: 1fr; }
+    .security-grid { grid-template-columns: 1fr; }
+    .social-grid { grid-template-columns: 1fr 1fr; }
+    .countdown { gap: 12px; }
+    .countdown-item { min-width: 60px; }
+    .countdown-value { font-size: 36px; }
+    .trust-bar-inner { justify-content: center; }
+    .story, .manifesto, .tokenomics, .roadmap, .security, .community { padding: 100px 20px; }
+    .phase { padding: 32px 24px; }
+    .footer-main { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, var(--fire));
+    overflow: hidden;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: var(--rice);
+    animation: scroll-line 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-line {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(80px); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="logo">$<span>PLOV</span></div>
+  <ul class="nav-links">
+    <li><a href="#story">Story</a></li>
+    <li><a href="#manifesto">Manifesto</a></li>
+    <li><a href="#tokenomics">Tokenomics</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#community">Community</a></li>
+  </ul>
+  <a href="#community" class="nav-cta">Join Army</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="particles" id="particles"></div>
+
+  <div class="hero-tag">Solana · Pre-TGE · June 2026</div>
+
+  <h1 class="hero-title">$PLOV</h1>
+
+  <p class="hero-subtitle">
+    Billions have tasted it. <span class="accent">Now they can own it.</span>
+  </p>
+
+  <p class="hero-description">
+    A recipe loved across every continent. Now on-chain, with a 1,500-year community testing it. Fair launch. No presale. No VC.
+  </p>
+
+  <div class="countdown" id="countdown">
+    <div class="countdown-item">
+      <div class="countdown-value" id="days">--</div>
+      <div class="countdown-label">Days</div>
+    </div>
+    <div class="countdown-divider">:</div>
+    <div class="countdown-item">
+      <div class="countdown-value" id="hours">--</div>
+      <div class="countdown-label">Hours</div>
+    </div>
+    <div class="countdown-divider">:</div>
+    <div class="countdown-item">
+      <div class="countdown-value" id="mins">--</div>
+      <div class="countdown-label">Mins</div>
+    </div>
+    <div class="countdown-divider">:</div>
+    <div class="countdown-item">
+      <div class="countdown-value" id="secs">--</div>
+      <div class="countdown-label">Secs</div>
+    </div>
+  </div>
+
+  <div class="hero-actions">
+    <a href="#community" class="btn-primary">
+      Join PlovArmy
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <a href="/whitepaper" class="btn-secondary">Read Whitepaper</a>
+  </div>
+
+  <div class="scroll-hint"></div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><span class="icon">🍛</span> Globally loved</div>
+    <div class="trust-item"><span class="icon">💰</span> 13B fixed supply</div>
+    <div class="trust-item"><span class="icon">🔐</span> Squads multisig</div>
+    <div class="trust-item"><span class="icon">✅</span> Fair Launch</div>
+    <div class="trust-item"><span class="icon">📋</span> Proof-hub</div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="section-label">Chapter One</div>
+    <h2 class="section-title">From every kitchen<br><span class="gold">to the blockchain</span></h2>
+    <p class="section-intro">
+      Plov didn't belong to one place. It appeared, independently, wherever fire met grain met meat met spice. A universal recipe written not by one chef, but by humanity itself.
+    </p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-era">~ 500 BC</div>
+        <h3 class="timeline-title">The First Pot</h3>
+        <p class="timeline-text">Rice meets fire meets meat. The recipe writes itself across continents — no patent, no owner, just the obvious answer to "what to cook tonight".</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-era">10th century</div>
+        <h3 class="timeline-title">The Spread</h3>
+        <p class="timeline-text">Trade routes carry the recipe. Each culture adds its signature — saffron here, raisins there, lamb, beef, chicken, vegetables. Same idea, infinite variations.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-era">2003</div>
+        <h3 class="timeline-title">UNESCO Heritage</h3>
+        <p class="timeline-text">Recognized as humanity's intangible cultural heritage. Not because one place owns it — because everyone does. A communal recipe scaled across borders.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-era">2026</div>
+        <h3 class="timeline-title">On-Chain</h3>
+        <p class="timeline-text">A recipe that survived 1,500 years of distributed consensus moves to Solana. Same philosophy, new technology. Open source, community-owned, immutable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifesto">
+  <div class="container">
+    <div class="section-label">Chapter Two</div>
+    <h2 class="section-title">Three things<br><span class="gold">we believe</span></h2>
+    <p class="section-intro">
+      Most memecoins are jokes told once. We're building something that already passed the test — a cultural artifact that survived for centuries because it actually works.
+    </p>
+
+    <div class="manifesto-grid">
+      <div class="manifesto-card">
+        <div class="manifesto-number">01 / Culture</div>
+        <svg class="manifesto-icon" viewBox="0 0 64 64" fill="none">
+          <ellipse cx="32" cy="44" rx="22" ry="14" fill="currentColor" opacity="0.15"/>
+          <path d="M10 38c0 8.8 9.85 16 22 16s22-7.2 22-16" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M16 38h32M14 32h36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="2" fill="currentColor"/>
+          <circle cx="32" cy="14" r="2" fill="currentColor"/>
+          <circle cx="44" cy="20" r="2" fill="currentColor"/>
+          <path d="M20 20c0 6-2 8-2 8M32 14c0 8-3 12-3 12M44 20c0 6 2 8 2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        </svg>
+        <h3 class="manifesto-title">Culture First.</h3>
+        <p class="manifesto-text">
+          Most tokens borrow a cute mascot and call it a day. We're rooted in something older — a recipe that connects strangers across continents. Real story, real heritage, real meaning.
+        </p>
+        <p class="manifesto-quote">"If your meme needs explaining, it isn't one yet."</p>
+      </div>
+
+      <div class="manifesto-card">
+        <div class="manifesto-number">02 / Fair</div>
+        <svg class="manifesto-icon" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M32 12v40M12 32h40" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+          <circle cx="32" cy="32" r="6" fill="currentColor"/>
+          <path d="M32 6v6M32 52v6M6 32h6M52 32h6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <h3 class="manifesto-title">Fair Launch.</h3>
+        <p class="manifesto-text">
+          No presale. No private round. No insider allocations. No VCs at a discount. Everyone gets the same shot, at the same price, at the same time. The token launches the way a community potluck starts — open to all who show up.
+        </p>
+        <p class="manifesto-quote">"Same fire, same kazan, same chance."</p>
+      </div>
+
+      <div class="manifesto-card">
+        <div class="manifesto-number">03 / Owned</div>
+        <svg class="manifesto-icon" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="22" r="8" stroke="currentColor" stroke-width="2.5"/>
+          <circle cx="14" cy="40" r="6" stroke="currentColor" stroke-width="2.5"/>
+          <circle cx="50" cy="40" r="6" stroke="currentColor" stroke-width="2.5"/>
+          <circle cx="32" cy="52" r="6" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M28 28l-10 8M36 28l10 8M32 32v14" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <h3 class="manifesto-title">Community Owned.</h3>
+        <p class="manifesto-text">
+          45% of supply goes to airdrops over four waves. Just 8% for the team, fully vested. Mint authority disabled forever. Liquidity locked. The chef sets the table, the community feasts together.
+        </p>
+        <p class="manifesto-quote">"The one who cooks it shouldn't own it. Plov belongs to those who eat."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOKENOMICS -->
+<section class="tokenomics" id="tokenomics">
+  <div class="container">
+    <div class="section-label">The Recipe</div>
+    <h2 class="section-title">Token <span class="gold">distribution</span></h2>
+    <p class="section-intro">
+      Every ingredient in its place. 45% goes to the community through PlovDrop — the largest allocation. No presale, no private sale, no VC rounds.
+    </p>
+
+    <div class="tokenomics-grid">
+      <div class="token-recipe">
+        <div class="token-row" style="--pct: 45%">
+          <div class="token-ing">🍚</div>
+          <div>
+            <div class="token-name">PlovDrop (Airdrops)</div>
+            <div class="token-desc">5,855,851,350 $PLOV · 4 waves</div>
+          </div>
+          <div class="token-pct">45%</div>
+        </div>
+        <div class="token-row" style="--pct: 20%">
+          <div class="token-ing">💧</div>
+          <div>
+            <div class="token-name">Liquidity</div>
+            <div class="token-desc">2,602,600,600 $PLOV · Meteora/Raydium/Orca</div>
+          </div>
+          <div class="token-pct">20%</div>
+        </div>
+        <div class="token-row" style="--pct: 15%">
+          <div class="token-ing">🥕</div>
+          <div>
+            <div class="token-name">Marketing & Growth</div>
+            <div class="token-desc">1,951,950,450 $PLOV · KOL / Ads / Community</div>
+          </div>
+          <div class="token-pct">15%</div>
+        </div>
+        <div class="token-row" style="--pct: 8%">
+          <div class="token-ing">👨‍🍳</div>
+          <div>
+            <div class="token-name">Team</div>
+            <div class="token-desc">1,041,040,240 $PLOV · 6mo cliff + 18mo vest</div>
+          </div>
+          <div class="token-pct">8%</div>
+        </div>
+        <div class="token-row" style="--pct: 7%">
+          <div class="token-ing">🔥</div>
+          <div>
+            <div class="token-name">Burn Reserve</div>
+            <div class="token-desc">910,910,210 $PLOV · Milestone burns</div>
+          </div>
+          <div class="token-pct">7%</div>
+        </div>
+        <div class="token-row" style="--pct: 5%">
+          <div class="token-ing">⭐</div>
+          <div>
+            <div class="token-name">Loyalty (Hold-to-Earn)</div>
+            <div class="token-desc">650,650,150 $PLOV · On-chain snapshots</div>
+          </div>
+          <div class="token-pct">5%</div>
+        </div>
+      </div>
+
+      <div class="token-facts">
+        <div class="fact-card">
+          <h4>Total Supply</h4>
+          <div class="fact-value">13,013,003,000</div>
+          <div class="fact-sub">$PLOV · Fixed · SPL Token</div>
+
+          <div class="fact-features">
+            <div class="fact-feature"><span class="check">✓</span> Mint OFF</div>
+            <div class="fact-feature"><span class="check">✓</span> Freeze OFF</div>
+            <div class="fact-feature"><span class="check">✓</span> Fair Launch</div>
+            <div class="fact-feature"><span class="check">✓</span> Solana SPL</div>
+          </div>
+        </div>
+
+        <div class="fact-card">
+          <h4>Largest allocation</h4>
+          <div class="fact-value" style="color: var(--fire); font-size: 32px;">45% to Community</div>
+          <div class="fact-sub">PlovDrop across four waves — more than liquidity, marketing, and team combined.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap" id="roadmap">
+  <div class="container">
+    <div class="section-label">The Cooking Stages</div>
+    <h2 class="section-title">Roadmap<br><span class="gold">to the table</span></h2>
+    <p class="section-intro">
+      Every dish has phases. Ingredients, preparation, fire, serving. Same with $PLOV — a deliberate sequence, not a hype pump.
+    </p>
+
+    <div class="phases">
+      <div class="phase active">
+        <div>
+          <div class="phase-status active">In Progress</div>
+          <div class="phase-time" style="margin-top: 12px;">Q2 2026</div>
+        </div>
+        <div>
+          <h3 class="phase-title">Phase 0</h3>
+          <div class="phase-subtitle">Foundation</div>
+        </div>
+        <div class="phase-desc">
+          <ul>
+            <li>Token deployed on Solana (mint & freeze disabled)</li>
+            <li>Squads multisig treasury setup</li>
+            <li>Security review initiated</li>
+            <li>Proof-hub live, all addresses public</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div>
+          <div class="phase-status upcoming">Upcoming</div>
+          <div class="phase-time" style="margin-top: 12px;">June 2026</div>
+        </div>
+        <div>
+          <h3 class="phase-title">Phase 1</h3>
+          <div class="phase-subtitle">TGE & Launch</div>
+        </div>
+        <div class="phase-desc">
+          <ul>
+            <li>Meteora DLMM launch pool (T0)</li>
+            <li>PlovDrop Wave 1 distribution (~1B $PLOV)</li>
+            <li>Liquidity protection active (lock/timelock)</li>
+            <li>Claim portal opens at claim.plovcoin.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div>
+          <div class="phase-status upcoming">Upcoming</div>
+          <div class="phase-time" style="margin-top: 12px;">Q3 2026</div>
+        </div>
+        <div>
+          <h3 class="phase-title">Phase 2</h3>
+          <div class="phase-subtitle">Growth</div>
+        </div>
+        <div class="phase-desc">
+          <ul>
+            <li>Raydium CPMM mirror pool (T+7, KPI-gated)</li>
+            <li>20,000+ holders target</li>
+            <li>CEX Tier-2 listings initiated</li>
+            <li>PlovDrop Wave 2 distribution</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div>
+          <div class="phase-status upcoming">Upcoming</div>
+          <div class="phase-time" style="margin-top: 12px;">Q4 2026</div>
+        </div>
+        <div>
+          <h3 class="phase-title">Phase 3</h3>
+          <div class="phase-subtitle">Scale</div>
+        </div>
+        <div class="phase-desc">
+          <ul>
+            <li>Orca CLMM USDC support pool (T+30)</li>
+            <li>Liquidity expansion across multiple DEXs</li>
+            <li>100,000+ holders target</li>
+            <li>Additional Tier-2 CEX listings</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div>
+          <div class="phase-status upcoming">Future</div>
+          <div class="phase-time" style="margin-top: 12px;">2027+</div>
+        </div>
+        <div>
+          <h3 class="phase-title">Phase 4+</h3>
+          <div class="phase-subtitle">Expansion</div>
+        </div>
+        <div class="phase-desc">
+          <ul>
+            <li>DAO governance transition</li>
+            <li>Kazan Genesis NFT collection</li>
+            <li>Cross-chain bridges (evaluation)</li>
+            <li>#PlovFest — annual community event</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section class="security">
+  <div class="container">
+    <div class="section-label">Transparency</div>
+    <h2 class="section-title">Security<br><span class="gold">& proof</span></h2>
+    <p class="section-intro">
+      Every treasury operation is on-chain, multi-signed, and published. No hidden wallets. No secret allocations. Everything verifiable on Solscan.
+    </p>
+
+    <div class="security-grid">
+      <div class="security-card">
+        <svg class="sec-icon" viewBox="0 0 48 48" fill="none">
+          <path d="M24 4L6 12v14c0 11 8 18 18 18s18-7 18-18V12L24 4z" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M16 24l6 6 12-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="sec-title">Squads Multisig</h3>
+        <p class="sec-text">All treasury operations require multi-signature approval with timelock. No single person can move funds. 5 signers, 3 required.</p>
+      </div>
+
+      <div class="security-card">
+        <svg class="sec-icon" viewBox="0 0 48 48" fill="none">
+          <rect x="8" y="12" width="32" height="28" rx="3" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M14 20h20M14 26h20M14 32h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="38" cy="14" r="4" fill="currentColor"/>
+        </svg>
+        <h3 class="sec-title">Proof-hub</h3>
+        <p class="sec-text">Public dashboard with every address, transaction, liquidity change, burn, airdrop hash, and monthly transparency report. Live at plovcoin.com/proof.</p>
+      </div>
+
+      <div class="security-card">
+        <svg class="sec-icon" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M24 14v10l6 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <h3 class="sec-title">Security Review</h3>
+        <p class="sec-text">Independent security review process initiated with external auditors. Results will be published on Proof-hub when finalized.</p>
+      </div>
+    </div>
+
+    <div class="audit-banner">
+      <div class="audit-icon">🔍</div>
+      <div class="audit-text">
+        <strong>Security review / audit process initiated.</strong> Engagement with external auditors is underway. Results will be published on <a href="/proof">Proof-hub</a> when finalized. We do not claim any audit completion until officially confirmed by the auditor.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community" id="community">
+  <div class="container">
+    <div class="section-label">PlovArmy</div>
+    <h2 class="section-title">Join<br><span class="gold">the table</span></h2>
+    <p class="section-intro">
+      Every plov is shared. Ours is no different. Whichever channel you're on, we're there.
+    </p>
+
+    <div class="social-grid">
+      <a href="https://t.me/PlovCoinOfficial" target="_blank" rel="noopener noreferrer" class="social-card">
+        <svg class="social-icon" viewBox="0 0 48 48" fill="currentColor">
+          <path d="M24 4C12.96 4 4 12.96 4 24s8.96 20 20 20 20-8.96 20-20S35.04 4 24 4zm9.27 13.73l-3.1 14.62c-.23 1.04-.85 1.3-1.72.81l-4.75-3.5-2.29 2.21c-.25.25-.47.47-.95.47l.34-4.83 8.8-7.95c.38-.34-.08-.53-.59-.19L17.15 26l-4.69-1.46c-1.02-.32-1.04-1.02.21-1.51l18.33-7.07c.85-.31 1.6.2 1.27 1.77z"/>
+        </svg>
+        <div class="social-name">Telegram</div>
+        <div class="social-handle">@PlovCoinOfficial</div>
+      </a>
+
+      <a href="https://x.com/PlovTeam" target="_blank" rel="noopener noreferrer" class="social-card">
+        <svg class="social-icon" viewBox="0 0 48 48" fill="currentColor">
+          <path d="M35.28 6.4h6.14L27.98 21.74 43.6 41.6H31.5L22.12 29.32 11.4 41.6H5.25l14.4-16.46L4.6 6.4h12.4l8.45 11.18L35.28 6.4zm-2.17 31.53h3.4L14.72 9.88h-3.65l22.04 28.05z"/>
+        </svg>
+        <div class="social-name">X / Twitter</div>
+        <div class="social-handle">@PlovTeam</div>
+      </a>
+
+      <a href="https://instagram.com/plovcoin" target="_blank" rel="noopener noreferrer" class="social-card">
+        <svg class="social-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5">
+          <rect x="6" y="6" width="36" height="36" rx="10"/>
+          <circle cx="24" cy="24" r="9"/>
+          <circle cx="35" cy="13" r="2" fill="currentColor"/>
+        </svg>
+        <div class="social-name">Instagram</div>
+        <div class="social-handle">@plovcoin</div>
+      </a>
+
+      <a href="https://tiktok.com/@plovcoin" target="_blank" rel="noopener noreferrer" class="social-card">
+        <svg class="social-icon" viewBox="0 0 48 48" fill="currentColor">
+          <path d="M32 4h-6v26c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6v-6c-6.6 0-12 5.4-12 12s5.4 12 12 12 12-5.4 12-12V18c2.4 1.8 5.2 3 8 3v-6c-4.4 0-8-3.6-8-8V4z"/>
+        </svg>
+        <div class="social-name">TikTok</div>
+        <div class="social-handle">@plovcoin</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2 class="cta-title">Ready to taste the chain?</h2>
+  <p class="cta-desc">The kazan is on. The fire is lit. Join PlovArmy before TGE and be part of the launch.</p>
+  <div class="cta-actions">
+    <a href="#community" class="btn-primary">Join PlovArmy</a>
+    <a href="/whitepaper" class="btn-secondary">Read Whitepaper</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="logo">$<span>PLOV</span></div>
+      <p class="footer-tagline">The universal recipe, now on-chain.</p>
+      <div class="footer-socials">
+        <a href="https://t.me/PlovCoinOfficial" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Telegram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.85 8.35-2.05 9.68c-.15.7-.56.87-1.14.54l-3.15-2.32-1.52 1.46c-.17.17-.31.31-.63.31l.23-3.22 5.87-5.31c.26-.23-.06-.36-.4-.13L9.8 13.18l-3.12-.98c-.68-.21-.69-.68.14-1.01l12.23-4.71c.56-.21 1.06.14.85 1.18z"/></svg>
+        </a>
+        <a href="https://x.com/PlovTeam" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="X">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.64 3.2h3.07L14.07 10.86l7.81 9.94H15.8L11.1 14.67 5.75 20.8H2.68l7.1-8.18L2.12 3.2h6.2l4.22 5.59L17.64 3.2zm-1.08 15.77h1.7L7.59 5H5.77l10.79 13.97z"/></svg>
+        </a>
+        <a href="https://instagram.com/plovcoin" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="https://tiktok.com/@plovcoin" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 2h-3v13c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3v-3c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6V9c1.2.9 2.6 1.5 4 1.5V7.5c-2.2 0-4-1.8-4-4V2z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h5>Product</h5>
+      <ul>
+        <li><a href="#tokenomics">Tokenomics</a></li>
+        <li><a href="/whitepaper">Whitepaper</a></li>
+        <li><a href="/plovdrop">PlovDrop</a></li>
+        <li><a href="/proof">Proof-hub</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Community</h5>
+      <ul>
+        <li><a href="#community">Join PlovArmy</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#manifesto">Manifesto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="mailto:hello@plovcoin.com">hello@plovcoin.com</a></li>
+        <li><a href="mailto:security@plovcoin.com">security@plovcoin.com</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <div class="anti-phish">
+      <strong>🔒 Security:</strong> Official domains only — <strong>plovcoin.com</strong> and <strong>claim.plovcoin.com</strong>. We will NEVER ask for your seed phrase or private key. Report suspicious sites: security@plovcoin.com
+    </div>
+
+    <p class="risk-disclosure">
+      <strong>⚠️ Risk Disclosure:</strong> Crypto assets, including $PLOV, are not regulated in most jurisdictions. The value of crypto assets can go down as well as up and you may lose all money you invest. This website does not constitute financial advice. Past performance is not indicative of future results. PlovCoin is a memecoin with no inherent utility or guaranteed value. Please Do Your Own Research (DYOR) before making any decisions.
+    </p>
+
+    <div class="footer-bottom">
+      <div>© 2026 PlovCoin. All rights reserved.</div>
+      <div>v1.2 · Solana · SPL Token</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navigation scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Generate floating particles
+  const particles = document.getElementById('particles');
+  const particleCount = window.innerWidth < 768 ? 15 : 30;
+  for (let i = 0; i < particleCount; i++) {
+    const p = document.createElement('div');
+    const isSteam = Math.random() > 0.7;
+    p.className = 'particle ' + (isSteam ? 'steam' : 'spark');
+    p.style.left = Math.random() * 100 + '%';
+    p.style.bottom = '0';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay = (Math.random() * 8) + 's';
+    p.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
+    particles.appendChild(p);
+  }
+
+  // Countdown to TGE — June 1, 2026
+  const TGE = new Date('2026-06-01T00:00:00Z').getTime();
+  function updateCountdown() {
+    const now = Date.now();
+    const diff = TGE - now;
+    if (diff <= 0) {
+      ['days','hours','mins','secs'].forEach(id => document.getElementById(id).textContent = '00');
+      return;
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('mins').textContent = String(mins).padStart(2, '0');
+    document.getElementById('secs').textContent = String(secs).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.manifesto-card, .timeline-item, .phase, .security-card, .social-card, .token-row, .fact-card').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = `opacity 0.7s ease ${(i % 6) * 0.1}s, transform 0.7s ease ${(i % 6) * 0.1}s`;
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
